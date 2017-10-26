@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto');
+
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+img {
+  width: 90%;
+}
+
+.link {
+  right: 2em;
+  bottom: 3em;
+  position: absolute;
+}
+
+.inverse {
+  background: #103F6D;
+  color: #FFFFFF;
+  text-shadow: 0 0 2px #1B6BB9;
+}
+
+.regular {
+  color: #09223A;
+  background: #87A1B9;
+  text-shadow: 0 0 10px #748B9F;
+}
+
+.title {
+  background-image: url(images/title_background.png);
+  background-size: 100%;
+  background-position: 50% 0;
+  color: #ffffff;
+}
+
+.remark-slide-number {
+    width: 97%;
+    text-align: right;
+    background-image: url('images/ovh-logo.svg');
+    background-size: 3em;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+}
+
+.icn {
+  width: 80px;
+  height: 80px;
+  background: url(images/products-logo.png) no-repeat 0 0;
+  margin: 0 auto;
+}
+.icn.icn-privateCloud {
+  background-position: 0 0;
+}
+.icn.icn-publicCloud {
+  background-position: -80px 0;
+}
+.icn.icn-hybridCloud {
+  background-position: -160px 0;
+}
+.icn.icn-dedicated {
+  background-position: -240px 0;
+}
+.icn.icn-platforms {
+  background-position: -320px 0;
+}
+.icn.icn-save {
+  background-position: -400px 0;
+}
+.icn.icn-network {
+  background-position: -560px 0;
+}
+.icn.icn-microsoft {
+  background-position: -480px 0;
+}
+.icn.icn-vdi {
+  background-position: -640px 0;
+}
+.icn.icn-vps {
+  background-position: -720px 0;
+}
