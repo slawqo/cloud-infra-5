@@ -19,16 +19,10 @@ img {
   position: absolute;
 }
 
-.inverse {
+.regular {
   background: #103F6D;
   color: #FFFFFF;
   text-shadow: 0 0 2px #1B6BB9;
-}
-
-.regular {
-  color: #09223A;
-  background: #87A1B9;
-  text-shadow: 0 0 10px #748B9F;
 }
 
 .title {
