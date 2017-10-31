@@ -270,16 +270,29 @@ class: regular
 
 -----
 
-Co nas wyróżnia?
+<div class="center">
+  Co nas wyróżnia?
+</div>
 
-- zgodność z OpenStack API
-- OpenStack w Warszawie jest w wersji Newton
-- backend oparty na Ceph
-- instancje posiadają w pełni osiągalny publiczny adres IP
-- możliwość integracji usług wewnątrz OVH
-- sieć jest domyślnie zabezpieczona przed nadmiernym ruchem przez Anti-DDoS
+-----
+
+- OpenStack API
+- OpenStack Newton m.in. regionie WAW
+- Local SSD storage
+- Block storage oparty o CEPH
+- integracja z usługami OVH
+- ochrona Anti-DDoS
 
 <!-- <div class="link" url="https://www.ovh.pl/public-cloud/instances/"></div> -->
+
+???
+PCI w OVH to:
+ - API OpenStack - daje to możliwość korzystania z narzędzi i skryptów
+ - WAW to wersja Newton - planujemy wkrótce upgrade do Ocata i później następne
+ - Dyski instancji na lokalnych dyskach SSD - wydajność
+ - Block storage oparty o CEPH
+ - instancje PCI zintegrowane z innymi usługami OVH - o czym będziemy mówić dokładniej za chwilę
+ - ochrona Anti-DDoS
 
 ---
 class: regular
@@ -288,80 +301,275 @@ class: regular
 
 -----
 
-Sieć w OVH
+<div class="center">
+    Sieć publiczna w OVH
+</div>
 
-- każda z instancji posiadać może adres sieci publicznej
-- adres sieci publicznej ma maskę /32
-- brak ruchu rozgłoszeniowego na interfejsie instancji
-- możliwość podłączenia wielu sieci prywatnych do instancji
-- prywatne sieci dostępne w różnych regionach dzięki vRack
+-----
+- Publiczne adresy IP skonfigurowane bezpośrednio na instancji
+- Brak ruchu L2 na interfejsie instancji
+- Możliwość korzystania z adresów IP FailOver na instancjach PCI
+- brak klasycznego <i>Network node'a</i>
+
+<pre style="font-size: 0.45em;">
+~ » nova list
++--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
+| ID                                   | Name     | Status | Task State | Power State | Networks                                        |
++--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
+| 0e75229b-e68f-410a-93cd-65f7879a6955 | WAW-VM-1 | ACTIVE | -          | Running     | Ext-Net=145.239.30.245, 2001:41d0:601:2000::2db |
++--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
+</pre>
+
+<pre style="font-size: 0.5em;">
+ubuntu@waw-vm-1:~$ ip a show ens3
+2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether fa:16:3e:3d:15:76 brd ff:ff:ff:ff:ff:ff
+    inet 145.239.30.245/32 brd 145.239.30.245 scope global ens3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f816:3eff:fe3d:1576/64 scope link
+       valid_lft forever preferred_lft forever
+
+ubuntu@waw-vm-1:~$ ip route
+default via 145.239.28.1 dev ens3
+145.239.28.1 dev ens3  scope link
+</pre>
+
+???
+- każda z instancji posiada może adres sieci publicznej dzięki czemu brak jest
+  klasycznego, Neutron'owego network node'a
+- adres sieci publicznej ma maskę /32 dzięki czemu brak ruchu
+  rozgłoszeniowego (L2) na interfejsie instancji
 - ruch między siecią OVH a zewnetrzną jest chroniony przez Anti-DDoS
-
----
-class: center, middle, regular
-
-# vRack
-
-<img src="images/img-header-vrack.png" class="light"></img>
-
-Prywatne połączenie wszystkich infrastruktur na całym świecie
-
----
-class: center, middle, regular
-
-## Prywatna sieć
-
-<img src="images/schema-isolation.png" class="light"></img>
-
-vRack pozwala na odizolowanie najważniejszych serwerów w ramach prywatnej sieci VLAN.
-
-Twoje dane są zabezpieczone a komunikacja między serwerami nie odbywa się za pomocą sieci publicznej.
-
----
-class: center, middle, regular
-
-## Wiele sieci VLAN
-
-<img src="images/schema-vlan.png" class="light"></img>
-
-Możesz wdrożyć aż do 4000 prywatnych sieci VLAN.
-
-Do serwerów dedykowanych możliwe jest doprowadzenie łącza trunk, a do instancji Public Cloud - wiele interfejsów różnych sieci prywatnych.
-
----
-class: center, middle, regular
-
-## Infrastruktura hybrydowa
-
-<img src="images/schema-hybride.png" class="light"></img>
-
-Możliwe jest połączenie Public Cloud z serwerami dedykowanymi.
-
----
-class: center, middle, regular
-
-## Multidatacenter
-
-<img src="images/schema-datacentre.png" class="light"></img>
-
-vRack działa między różnymi centrami danych OVH.
-
-Od Europy po Kanadę: możesz budować prywatne i redundantne infrastruktury umieszczone w kilku centrach danych.
+- możliwość podpięcia adresów IP Failover z OVH do instancji - np. przeniesienie
+  adresu IP z serwera dedykowanego
 
 ---
 class: regular
 
-# vRack
+# Public Cloud
 
 -----
 
-Technologia vRack (wirtualna szafa) pozwala na podłączenie, odizolowanie i rozdzielenie usług OVH w ramach jednej lub kilku prywatnych i zabezpieczonych sieci.
+<div class="center">
+    Sieć prywatna w OVH - vRack
+</div>
 
-Dzięki unikalnym technologiom sieciowym możesz zbudować zaawansowane prywatne infrastruktury w strefie wielu centrów danych.
+-----
 
-Planowane jest uruchomienie vRouter, który pozwoli na zestawienie połączenia między własnymi zasobami a zasobami w OVH.
+<div class="center" style="padding-top: 20px">
+    <img src="images/img-header-vrack.png" class="light"></img>
+    <div>
+        Prywatne połączenie wszystkich serwerowni OVH na świecie
+    </div>
+</div>
 
-<!-- <div class="link" url="https://www.ovh.pl/rozwiazania/vrack/"></div> -->
+???
+- sieć prywatna (tenant network) oparta o usługę vRack OVH,
+- vrack to technologia OVH pozwalająca na połączenie prywatną siecią L2 swoich usług,
+- pierwotnie tylko dedyki w obrębie jednego DC, teraz już różne usługi w różnych DC
+
+---
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Sieć prywatna w OVH - vRack
+</div>
+
+-----
+
+<div class="center" style="padding-top: 10px">
+    <img src="images/schema-isolation.png" class="light"></img>
+    <div>
+        vRack pozwala na odizolowanie najważniejszych serwerów w ramach prywatnej sieci VLAN.<br />
+        Twoje dane są zabezpieczone a komunikacja między serwerami nie odbywa się za pomocą sieci publicznej.
+    </div>
+</div>
+
+???
+
+- Można wdrożyć aż do 4000 prywatnych sieci VLAN.
+
+
+---
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Sieć prywatna w OVH - vRack
+</div>
+
+-----
+
+<div class="center" style="padding-top: 10px">
+    <img src="images/schema-hybride.png" class="light"></img>
+    <div>
+        Możliwe połączenie Public Cloud z serwerami dedykowanymi.
+    </div>
+</div>
+
+???
+- Dzięki temu możliwe jest podłączenie VMek z serwerami dedykowanymi tworząc
+  <b>Infrastrukturę hybrydową</b>
+- Do serwerów dedykowanych możliwe jest doprowadzenie łącza trunk, a do
+  instancji Public Cloud - wiele interfejsów różnych sieci prywatnych.
+
+---
+
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Sieć prywatna w OVH - vRack
+</div>
+
+-----
+
+<pre style="font-size: 0.45em;">
+~ » neutron net-show Local-Net
++--------------------------+--------------------------------------+
+| Field                    | Value                                |
++--------------------------+--------------------------------------+
+| admin_state_up           | True                                 |
+| description              |                                      |
+| id                       | d02876b3-0065-4b72-8aba-2cf8360d8a37 |
+| mtu                      | 9000                                 |
+| name                     | Local-Net                            |
+| provider:network_type    | vrack                                |
+| provider:segmentation_id | 1000                                 |
+| status                   | ACTIVE                               |
+| subnets                  | 352d9782-55df-46c0-93fc-ab7cff83951d |
++--------------------------+--------------------------------------+
+~ »
+</pre>
+
+<pre style="font-size: 0.45em;">
+~ » neutron subnet-show 352d9782-55df-46c0-93fc-ab7cff83951d
++-------------------+----------------------------------------------------+
+| Field             | Value                                              |
++-------------------+----------------------------------------------------+
+| allocation_pools  | {"start": "192.168.0.214", "end": "192.168.0.254"} |
+| cidr              | 192.168.0.0/24                                     |
+| dns_nameservers   |                                                    |
+| enable_dhcp       | True                                               |
+| gateway_ip        |                                                    |
+| host_routes       |                                                    |
+| id                | 352d9782-55df-46c0-93fc-ab7cff83951d               |
+| ip_version        | 4                                                  |
+| network_id        | d02876b3-0065-4b72-8aba-2cf8360d8a37               |
++-------------------+----------------------------------------------------+
+</pre>
+
+???
+Sieć bazująca na Vrack'u w OpenStack,
+* Tu sieć utworzona w WAW, ale praktycznie taka sama sieć i podsieć jest też
+utworzona w BHS
+* subnet - taki sam utworzony jest w obu regionach, różne są tylko
+  <i>allocation pool'e</i> tak aby nie było overlappingu adresów IP
+  przydzielanych przez Neutron'a w różnych regionach
+* ważny jest ten sam segmentation_id - można go wybrać z poziomu panelu manager
+  OVH
+
+---
+
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Sieć prywatna w OVH - vRack
+</div>
+
+-----
+
+<pre style="font-size: 0.45em;">
+~ » nova interface-attach WAW-VM-1 --net-id d02876b3-0065-4b72-8aba-2cf8360d8a37
+~ » nova list
++--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
+| ID                                   | Name     | Status | Task State | Power State | Networks                                        |
++--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
+| 0e75229b-e68f-410a-93cd-65f7879a6955 | WAW-VM-1 | ACTIVE | -          | Running     | Ext-Net=145.239.30.245, 2001:41d0:601:2000::2db |
+|                                      |          |        |            |             | Local-Net=192.168.0.222                         |
++--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
+</pre>
+<pre style="font-size: 0.45em;">
+~ » nova list
++--------------------------------------+----------+--------+------------+-------------+---------------------------------------------------+
+| ID                                   | Name     | Status | Task State | Power State | Networks                                          |
++--------------------------------------+----------+--------+------------+-------------+---------------------------------------------------+
+| 8c193736-b98f-4c5d-b9b1-0186b507b293 | BHS-VM-1 | ACTIVE | -          | Running     | Ext-Net=142.44.244.158, 2607:5300:201:2100::3:cc9c|
+|                                      |          |        |            |             | Local-Net=192.168.0.2                             |
++--------------------------------------+----------+--------+------------+-------------+---------------------------------------------------+
+
+???
+Jak to wygląda w praktyce?
+
+* do VMki z WAW dodajemy nowy interfejs z siecią lokalną
+* jest też druga, podobna VMka w BHS
+
+---
+
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Sieć prywatna w OVH - vRack
+</div>
+
+-----
+
+<pre style="font-size: 0.5em;">
+ubuntu@waw-vm-1:~$ mtr -r -c 1 192.168.0.2
+Start: Tue Oct 31 14:08:45 2017
+HOST: waw-vm-1                    Loss%   Snt   Last   Avg  Best  Wrst StDev
+  1.|-- 192.168.0.2                0.0%     1  109.3 109.3 109.3 109.3   0.0
+</pre>
+
+<pre style="font-size: 0.5em;">
+ubuntu@waw-vm-1:~$ mtr -r -c 1 142.44.244.158
+Start: Tue Oct 31 14:09:28 2017
+HOST: waw-vm-1                    Loss%   Snt   Last   Avg  Best  Wrst StDev
+  1.|-- 145.239.28.1               0.0%     1    0.1   0.1   0.1   0.1   0.0
+  2.|-- 192.168.250.254            0.0%     1    0.1   0.1   0.1   0.1   0.0
+  3.|-- 10.13.14.190               0.0%     1    0.2   0.2   0.2   0.2   0.0
+  4.|-- 10.13.0.220                0.0%     1    0.3   0.3   0.3   0.3   0.0
+  5.|-- 10.95.100.0                0.0%     1    0.3   0.3   0.3   0.3   0.0
+  6.|-- vl1067.var-6-a72.pl.eu     0.0%     1    0.8   0.8   0.8   0.8   0.0
+  7.|-- be100-1102.fra-1-a9.de.eu  0.0%     1   21.6  21.6  21.6  21.6   0.0
+  8.|-- rbx-g1-nc5.fr.eu           0.0%     1   30.3  30.3  30.3  30.3   0.0
+  9.|-- 10.95.64.1                 0.0%     1   28.8  28.8  28.8  28.8   0.0
+ 10.|-- vl1304.bhs-g1-a75.qc.ca    0.0%     1  106.9 106.9 106.9 106.9   0.0
+ 11.|-- be5.bhs-z2g2-a75.qc.ca     0.0%     1  106.9 106.9 106.9 106.9   0.0
+ 12.|-- 10.98.243.64               0.0%     1  107.0 107.0 107.0 107.0   0.0
+ 13.|-- 149.56.50.176              0.0%     1  106.7 106.7 106.7 106.7   0.0
+ 14.|-- 158.69.61.3                0.0%     1  106.6 106.6 106.6 106.6   0.0
+ 15.|-- 142.44.244.158             0.0%     1  106.8 106.8 106.8 106.8   0.0
+</pre>
+
+???
+No i teraz komunikacja pomiędzy tymi maszynami jest możliwa :)
+
+Podsumowując:
+* Technologia vRack (wirtualna szafa) pozwala na podłączenie,
+  odizolowanie i rozdzielenie usług OVH w ramach jednej lub kilku prywatnych i zabezpieczonych sieci.
+
+* Dzięki unikalnym technologiom sieciowym możesz zbudować zaawansowane prywatne infrastruktury w strefie wielu centrów danych.
+
+* Dodatkowo Planowane jest uruchomienie vRouter, który pozwoli na zestawienie połączenia między własnymi zasobami a zasobami w OVH.
 
 ---
 class: regular
@@ -376,8 +584,6 @@ W Polsce będzie ono dostępne w wersji **Dedicated** w Warszawie przez punkty:
 
 - **Lim**
 - **Thinx**
-
-<!-- <div class="link" url="https://www.ovh.pl/rozwiazania/vrack-connect/"></div> -->
 
 ---
 class: center, middle, regular
