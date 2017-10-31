@@ -572,38 +572,72 @@ Podsumowując:
 * Dodatkowo Planowane jest uruchomienie vRouter, który pozwoli na zestawienie połączenia między własnymi zasobami a zasobami w OVH.
 
 ---
-class: regular
 
-# vRack Connect
-
------
-
-Możliwość bezpośredniego połączenia własnego DC z zasobami w OVH.
-
-W Polsce będzie ono dostępne w wersji **Dedicated** w Warszawie przez punkty:
-
-- **Lim**
-- **Thinx**
-
----
 class: center, middle, regular
 
 # Planowane usługi
 
 ---
+
 class: regular
 
-# Load Balancer
+# Public Cloud
 
 -----
 
-Dedykowana usługa pozwalająca na rozdzielanie ruchu sieciowego między serwerami.
+<div class="center">
+    Load Balancer - OVH IPLB
+</div>
 
-Na chwilę obecną IPLB nie jest dostępne w Polsce.
+-----
 
-Trwają prace nad integracją produktu OVH IPLB z OpenStack.
+- usługa OVH IPLB
+- OpenStack Neutron LBaaS API 2.0
+- zarządzanie usługą IPLB zarówno przez API OVH i OpenStack
 
-Pozwoli to na zarządzanie load balancerem z poziomu OpenStack API.
+???
+
+* Loadbalancer to usługa rozdzielająca ruch pomiędzy serwery
+* Trwają prace nad integracją produktu OVH IPLB z OpenStack LBaaS API 2.0 co
+  pozwoli to na zarządzanie load balancerem z poziomu OpenStack API.
+
+---
+
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Load Balancer - OVH IPLB
+</div>
+
+-----
+
+TODO: zrzut ekranu z jakimś IPLB z panelu manager OVH
+
+???
+TODO: notatki
+
+---
+
+class: regular
+
+# Public Cloud
+
+-----
+
+<div class="center">
+    Load Balancer - Neutron LBaaS 2.0
+</div>
+
+-----
+
+TODO: zrzut konsoli z jakimś LBAAS'em i loadbalancer'em dodanym do mojego testowego projektu
+
+???
+TODO: co tu mówić o tym LBaaS'ie?
 
 ---
 class: regular
