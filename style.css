@@ -25,6 +25,11 @@ img {
   text-shadow: 0 0 2px #1B6BB9;
 }
 
+.light {
+  padding: 2em;
+  background: #89ABD4;
+}
+
 .title {
   background-image: url(images/title_background.png);
   background-size: 100%;
@@ -33,12 +38,21 @@ img {
 }
 
 .remark-slide-number {
-    width: 97%;
-    text-align: right;
-    background-image: url('images/ovh-logo.svg');
-    background-size: 3em;
-    background-position: left bottom;
-    background-repeat: no-repeat;
+  width: 97%;
+  text-align: right;
+  background-image: url('images/ovh-logo.svg');
+  background-size: 3em;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+}
+
+pre, code, .remark-code {
+  padding: 0.5em;
+  text-align: left;
+  font-size: 0.8em;
+  color: #FFFFFF;
+  background: #001037;
+  border-radius: 5px;
 }
 
 .icn {
