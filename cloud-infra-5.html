@@ -615,10 +615,12 @@ class: regular
 
 -----
 
-TODO: zrzut ekranu z jakimś IPLB z panelu manager OVH
+<div class="center">
+    <img src="images/iplb.png" style="width: 90%"></img>
+</div>
 
 ???
-TODO: notatki
+Usługa IPLB może będzie mogła być zarządzana zarówno z panelu manager OVH i OVH REST API.
 
 ---
 
@@ -634,10 +636,32 @@ class: regular
 
 -----
 
-TODO: zrzut konsoli z jakimś LBAAS'em i loadbalancer'em dodanym do mojego testowego projektu
+<pre style="font-size: 0.45em;">
+~ » neutron lbaas-loadbalancer-list
++--------------------------------------+-------------------+----------------+---------------------+
+| id                                   | name              | vip_address    | provisioning_status |
++--------------------------------------+-------------------+----------------+---------------------+
+| b99d4f35-8afc-4c92-99a5-8015be1029ee | ip-91.134.128.132 | 91.134.128.132 | ACTIVE              |
++--------------------------------------+-------------------+----------------+---------------------+
+</pre>
+
+<pre style="font-size: 0.45em;">
+~ » neutron lbaas-listener-list
++--------------------------------------+-----------------+---------------------+----------+---------------+----------------+
+| id                                   | default_pool_id | name                | protocol | protocol_port | admin_state_up |
++--------------------------------------+-----------------+---------------------+----------+---------------+----------------+
+| 51245091-5ae3-dd35-f865-d96967bd03ef |                 | tcp/frontend/61061  | TCP      |          6666 | True           |
+| c3cf62c1-924e-a79f-70c0-e2008706a5f3 |                 | http/frontend/60504 | HTTP     |          9999 | True           |
+| 55b83304-1efa-631e-8903-58702c1cb8f6 |                 | http/frontend/60375 | HTTP     |            80 | True           |
+| 62b3d7bb-9691-cc5f-5e72-21123169c567 |                 | http/frontend/60377 | HTTP     |          8888 | True           |
++--------------------------------------+-----------------+---------------------+----------+---------------+----------------+
+</pre>
 
 ???
-TODO: co tu mówić o tym LBaaS'ie?
+* Zarządzana przez API OpenStack'a
+* Oczywiście wszystkie create/update/delete call'e do LBaaS (listener, pool, member) są możliwe.
+* Nie da się zrobić "create loadbalancer" bo to trzeba w panelu OVH zrobić tylko.
+* Wszystkie zmiany zrobione jedną z tych metod są widoczne od razu przez drugi z interfejsów
 
 ---
 class: regular
