@@ -19,12 +19,29 @@ Sławomir Kapłoński & Paweł Suder
 
 7.11.2017
 
+???
+* przedstawmy się z imienia - Paweł i Sławomir
+* jesteśmy z R&D i pracujemy we Wrocławiu
+* jesteśmy z zespołu odpowiedzialnego za Public Cloud w OVH
+* rozwijamy OpenStacka na wew. potrzeby
+* integrujemy usługi OVH z naszą instalacją OpenStack
+* działamy w OpenStack community (patrz: Sławomir)
+* **jak definiujemy chmurę hybrydową?**
+
 ---
 class: center, middle, regular
 
 # OVH
 
 Krótki przegląd
+
+???
+Odpowiedzmy sobie na pytania:
+
+* kiedy powstaliśmy? jakie były początki?
+* od kiedy działamy w Polsce? jak jest teraz?
+* ile już nas jest?
+* gdzie znajdują się centra czy ośrodki firmy?
 
 ---
 class: center, middle, regular
@@ -57,6 +74,15 @@ class: center, middle, regular
     </div>
   </div>
 </div>
+
+???
+* firma została założona przez Octava Klabę w 1999r w Paryżu
+* zacząło się od 10 wypożyczonych serwerów do web hostingu
+* bardzo szybko okazało się, że potrzeba więcej miejsca oraz elastycznych rozwiązań (o czym za chwilę)
+* od 2004r działa biuro OVH we Wrocławiu
+* obecnie jest nas ponad 2 tys w całej firmie
+* we Wrocławiu zatrudnionych jest około 70 osób
+* planujemy powiększenie oddziału we Wrocławiu do 150 osób
 
 -----
 
@@ -92,6 +118,11 @@ class: center, middle, regular
   </div>
 </div>
 
+
+???
+* obecnie mamy ponad 1 mln klientów
+* ponad połowa to firmy dostarczające usług innym klientom
+
 -----
 
 ---
@@ -105,6 +136,53 @@ class: center, middle, regular
 
 -----
 
+???
+* centra OVH znajdują się głównie we Francji
+* od niedawna otwierane są także w innych krajach Europy oraz innych kontynentów
+* niedawno uruchomione zostało centrum w Singapurze oraz Sydney
+* w obecnym roku uruchomione zostało także centrum w Warszawie
+
+---
+class: center, middle, regular
+
+## Innowacje w OVH
+
+Własne serwery
+
+-----
+
+<img src="images/header-production.jpg" style="width: 60%"></img>
+
+-----
+
+OVH produkuje swoje własne serwery i dysponuje kilkoma liniami produkcyjnymi we Francji i w Kanadzie.
+
+???
+* dość szybko okazało się, że potrzeba elastycznych rozwiązań dot. sprzętu
+* od 2002r OVH produkuje własne serwery
+* są to serwery dedykowane, jak i serwery stanowiące część cloudu oraz infrastruktury sieciowej
+
+---
+class: center, middle, regular
+
+## Innowacje w OVH
+
+DC Strasbourg
+
+-----
+
+<img src="images/sbg1.jpg" style="width: 80%"></img>
+
+-----
+
+Budowa DC
+
+Zastosowanie kontenerów do budowy centrum
+
+???
+* jedno z naszych centrów zbudowane jest w oparciu o kontenery (takie fizyczne, budowlane, cargo..)
+* dzięki kontenerom możliwe jest szybkie rozbudowanie, jak i przeniesienie centrum w inne miejsce
+
 ---
 class: center, middle, regular
 
@@ -115,6 +193,12 @@ DC Roubaix
 <img src="images/img07.jpg" style="width: 60%"></img>
 
 Pierwsze centrum bez klimatyzacji
+
+???
+* od 2003r wdrażane jest chłodzenie wodą oraz powietrzem
+* wymiana powietrza wewnątrz budynku serwerowni, zachodzi na wskutek efektu kominowego
+* powietrze dostaje się z zewnątrz, ogrzewane jest przez serwery i wydostaje się poprzez "komin", jakim jest dziedziniec budynku
+* hasła klucze: "Germain Masse" oraz "chimney effect"
 
 ---
 class: center, middle, regular
@@ -140,7 +224,8 @@ Chłodzenie
 
 Zastosowane chłodzenie wodą i powietrzem
 
-Jedynie 10W zużywane jest na schłodzenie 100W serwera
+???
+* chłodzenie wodą i powietrzem pozwala na schłodzenie 100W serwera kosztem 10W energii elektrycznej
 
 ---
 class: center, middle, regular
@@ -157,37 +242,8 @@ Odnawialne źródła energii
 
 Zainwestowaliśmy ponad 15 mln € w odnawialne źródła energii
 
----
-class: center, middle, regular
-
-## Innowacje w OVH
-
-Własne serwery
-
------
-
-<img src="images/header-production.jpg" style="width: 60%"></img>
-
------
-
-OVH produkuje swoje własne serwery i dysponuje kilkoma liniami produkcyjnymi we Francji i w Kanadzie.
-
----
-class: center, middle, regular
-
-## Innowacje w OVH
-
-DC Strasbourg
-
------
-
-<img src="images/sbg1.jpg" style="width: 80%"></img>
-
------
-
-Budowa DC
-
-Zastosowanie kontenerów do budowy centrum
+???
+* zainwestowaliśmy ponad 15 mln € w odnawialne źródła energii
 
 ---
 class: center, middle, regular
@@ -195,6 +251,9 @@ class: center, middle, regular
 # OVH w Polsce
 
 Nowe DC OVH
+
+???
+Do konkretów.. czyli o tym, co w Polsce.
 
 ---
 class: center, middle, regular
@@ -211,6 +270,9 @@ _Octave: DC WAW1 in Warsaw: Room 0 for the routing gears._
 
 <!-- <div class="link" url="https://twitter.com/olesovhcom/status/827039870304604160"></div> -->
 
+???
+* pierwszy element pozwalający na stworzenie DC w Polsce, czyli "room zero" z łącznością
+
 ---
 class: center, middle, regular
 
@@ -221,6 +283,13 @@ class: center, middle, regular
 <img src="images/IMG_2003.JPG" style="width: 75%"></img>
 
 -----
+
+???
+* obecny wygląd DC
+* widoczne są wymienniki ciepła (chłodzenie wodą), generatory oraz ściana DC
+* z tego co nam przekazał szef DC, nie wszystkie "alejki" są wypełnione sprzętem.. jeszcze
+* DC nadal się rozwija
+* nie wszystkie usługi są jeszcze wdrożone
 
 ---
 class: regular
@@ -242,7 +311,8 @@ class: regular
     </div>
     <div class="col center">
       <div class="icn icn-privateCloud"></div>
-      Private Cloud
+      Private Cloud<br/>
+      (wkrótce)
     </div>
   </div>
   <div class="row" style="padding: 2em">
@@ -257,10 +327,19 @@ class: regular
   </div>
 </div>
 
+???
+* obecnie hostowane są: Public Cloud, VPS oraz dedyki
+* Private Cloud ma być wkrótce (nie do końca wiemy kiedy i co jest powodem wstrzymania, nie nasza działka..)
+
 ---
 class: center, middle, regular
 
 # Public Cloud
+
+???
+**No dobra... a co z hybrydowym cloudem?**
+
+* hybryda, czyli OpenStack cloud i nasze rozwiązania!
 
 ---
 class: regular
@@ -688,6 +767,20 @@ Trwają prace nad integracją obecnego systemu metryk z OpenStack.
 
 Pozwoli to na pobieranie danych z poziomu OpenStack API.
 
+???
+* OVH dostarcza, jak produkt, usługi metryk
+* każdy może wysyłać i pobierać dane z wykorzystaniem Warp10
+* cały backend do obsługi metryk jest i działa
+* OpenStack posiada własne mechanizmy do zbierania i przechowywania metryk
+* naszym celem jest połączenie tego co w OpenStacku z tym co już mamy wdrożone i dostępne
+* pracujemy (w mocno deweloperskim środowisku) nad rozwiązaniem, które będzie:
+ * jak najbardziej zgodne z OpenStackiem
+ * korzystało z naszego systemu do metryk
+ * pozwoli na dodanie kolejnych usług OpenStack opartych o metryki
+* na tę chwilę:
+ * udało się "połączyć" nasz system metryk z serwisem odpowiedzialnym za obsługę przechowywania metryk w OpenStacku (Gnocchi)
+ * zapisywać i odczytywać wartości metryk przy użyciu narzędzi dostępnych w ramach OpenStacka
+
 ---
 class: center, middle, regular
 
@@ -702,7 +795,7 @@ $ nova list
 +--------------------------------------+------------------+--------+
 | ID                                   | Name             | Status |
 +--------------------------------------+------------------+--------+
-| 1e6c8de0-6ffe-422b-9729-968606f8a31b | testing_instance | ACTIVE |
+| <span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span> | testing_instance | ACTIVE |
 +--------------------------------------+------------------+--------+
 </pre>
 
@@ -711,20 +804,23 @@ $ gnocchi resource list -c id -c type -c original_resource_id
 +--------------------------------------+----------------------------+-----------------------------------------------------------------------+
 | id                                   | type                       | original_resource_id                                                  |
 +--------------------------------------+----------------------------+-----------------------------------------------------------------------+
-| 1e6c8de0-6ffe-422b-9729-968606f8a31b | instance                   | 1e6c8de0-6ffe-422b-9729-968606f8a31b                                  |
-| 74101fe3-6aed-5e45-ae1e-05226c5053d6 | instance_network_interface | instance-00000001-1e6c8de0-6ffe-422b-9729-968606f8a31b-tap58d2b129-ad |
-| b85b3778-95ea-5b21-8f8b-48ca8477e224 | instance_disk              | 1e6c8de0-6ffe-422b-9729-968606f8a31b-vda                              |
+| <span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span> | instance                   | <span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span>                                  |
+| 74101fe3-6aed-5e45-ae1e-05226c5053d6 | instance_network_interface | instance-00000001-<span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span>-tap58d2b129-ad |
+| b85b3778-95ea-5b21-8f8b-48ca8477e224 | instance_disk              | <span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span>-vda                              |
 +--------------------------------------+----------------------------+-----------------------------------------------------------------------+
 </pre>
 
 <pre style="font-size: 0.4em;">
-$ gnocchi metric list | grep 1e6c8de0-6ffe-422b-9729-968606f8a31b | grep cpu_util
+$ gnocchi metric list | grep <span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span> | grep <span class="red">cpu_util</span>
 +--------------------------------------+---------------------+---------------------------------+---------+--------------------------------------+
 | id                                   | archive_policy/name | name                            | unit    | resource_id                          |
 +--------------------------------------+---------------------+---------------------------------+---------+--------------------------------------+
-| ba9359a1-0a22-4355-995b-085f6ee51089 | ovh                 | cpu_util                        | None    | 1e6c8de0-6ffe-422b-9729-968606f8a31b |
+| ba9359a1-0a22-4355-995b-085f6ee51089 | ovh                 | <span class="red">cpu_util</span>                        | None    | <span class="green">1e6c8de0-6ffe-422b-9729-968606f8a31b</span> |
 +--------------------------------------+---------------------+---------------------------------+---------+--------------------------------------+
 </pre>
+
+???
+* dla przykładu: dla istniejące instancji, możliwe jest odczytanie wartości obciążenia procentowego procesora
 
 ---
 class: center, middle, regular
@@ -756,6 +852,10 @@ $ gnocchi measures show ba9359a1-0a22-4355-995b-085f6ee51089
 +---------------------------+-------------+---------------+
 </pre>
 
+
+???
+* dla przykładu: dla istniejące instancji, możliwe jest odczytanie wartości obciążenia procentowego procesora
+
 ---
 class: center, middle, regular
 
@@ -771,6 +871,9 @@ class: center, middle, regular
 
 Grafana dostępna jest z poziomu Manager
 
+???
+* te same wartości widoczne są w ramach Grafany, która jest dostępna z poziomu Manager
+
 ---
 class: regular
 
@@ -783,6 +886,18 @@ Usługi OpenStack Aodh oraz Heat bazują na danych z metrykach i pozwalają na a
 Alarmy wyzwalane są przy określonych wartościach metryk.
 
 Określone alarmy powodują akcje, którymi mogą być dynamiczne dodawanie lub usuwanie instancji.
+
+???
+* same metryki niczego nie zmieniają
+* w oparciu o wartości metryk możliwe jest podejmowanie pewnych działań
+* w świecie OpenStack są odpowiedzialne za to serwisu, które automatyzują proces orchestracji zasobów
+ * Aodh odpowiada za definicje i ewaluację alarmów
+ * Heat odpowiada za zarządzenia alarmami oraz zasobami
+* innymi słowy:
+ * tworzymi stos w ramach Heat'a
+ * Heat tworzy (w oparciu o podane definicje) alarmy, które, jeśli zachodzą warunki, powodują pewne akcje, które wykonuje Heat
+ * alarmy ewaluaowane są przez Aodh co jakiś czas
+ * ewaluacja alarmów polega na odpotywaniu serwisu metryk zapytaniem agregującym wyniki np. w ramach danego stosu (server_group)
 
 ---
 class: center, middle, regular
@@ -816,10 +931,15 @@ $ aodh alarm list
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+---------:
 | alarm_id                             | type                                       | name                                      | state | severity:
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+---------:
-| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | ok    | low     :
-| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | alarm | low     :
+| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | <span class="green">ok</span>    | low     :
+| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | <span class="red">alarm</span> | low     :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+---------:
 </pre>
+
+???
+* dla przykładu: stworzyliśmy stos, który posiada minimalnie jedną instancję
+* na potrzeby skalowania (w górę i w dół) stworzone zostały alarmy, które posiadają warunki: mniej niż 20% dla low, więcej niż 80% dla high
+* obecnie stan alarm jest dla sytuacji low, a że minimalnie ma być jedna instancja, to ta jedyna istancja nie jest usunięta
 
 ---
 class: center, middle, regular
@@ -844,7 +964,7 @@ $ gnocchi measures aggregation \
 | 2017-10-31T09:11:15+00:00 |        15.0 |  0.8114249292 |
 | 2017-10-31T09:11:30+00:00 |        15.0 |  0.9610490475 |
 | 2017-10-31T09:11:45+00:00 |        15.0 |  1.3871397001 |
-| 2017-10-31T09:12:00+00:00 |        15.0 | 19.1047855617 |
+| 2017-10-31T09:12:00+00:00 |        15.0 | <span class="red">19.1047855617</span> |
 +---------------------------+-------------+---------------+
 </pre>
 
@@ -853,10 +973,13 @@ $ aodh alarm list
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 | alarm_id                             | type                                       | name                                      | state | severity :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
-| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | ok    | low      :
-| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | alarm | low      :
+| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | <span class="green">ok</span>    | low      :
+| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | <span class="red">alarm</span> | low      :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 </pre>
+
+???
+* na tej jednej, jedynej instacji zacząłem generować obciążenie
 
 ---
 class: center, middle, regular
@@ -881,7 +1004,7 @@ $ gnocchi measures aggregation \
 | 2017-10-31T09:11:30+00:00 |        15.0 |  0.9610490475 |
 | 2017-10-31T09:11:45+00:00 |        15.0 |  1.3871397001 |
 | 2017-10-31T09:12:00+00:00 |        15.0 | 19.1047855617 |
-| 2017-10-31T09:12:15+00:00 |        15.0 |  63.525273101 |
+| 2017-10-31T09:12:15+00:00 |        15.0 |  <span class="green">63.525273101</span> |
 +---------------------------+-------------+---------------+
 </pre>
 
@@ -890,10 +1013,13 @@ $ aodh alarm list
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 | alarm_id                             | type                                       | name                                      | state | severity :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
-| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | ok    | low      :
-| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | ok    | low      :
+| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | <span class="green">ok</span>    | low      :
+| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | <span class="green">ok</span>    | low      :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 </pre>
+
+???
+* po chwili okazało się, że wynik zapytania agregującego (takiego, jakie wykonuje Aodh, przy ewaluacji alarmów), daje wartość, która ustawia stan obu alarmów na okey (wpadło w zakres 20~80%)
 
 ---
 class: center, middle, regular
@@ -918,7 +1044,7 @@ $ gnocchi measures aggregation \
 | 2017-10-31T09:12:00+00:00 |        15.0 | 19.1047855617 |
 | 2017-10-31T09:12:15+00:00 |        15.0 |  63.525273101 |
 | 2017-10-31T09:12:30+00:00 |        15.0 |         100.0 |
-| 2017-10-31T09:12:45+00:00 |        15.0 |         100.0 |
+| 2017-10-31T09:12:45+00:00 |        15.0 |         <span class="red">100.0</span> |
 +---------------------------+-------------+---------------+
 </pre>
 
@@ -927,10 +1053,14 @@ $ aodh alarm list
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 | alarm_id                             | type                                       | name                                      | state | severity :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
-| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | ok    | low      :
-| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | ok    | low      :
+| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | <span class="green">ok</span>    | low      :
+| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | <span class="green">ok</span>    | low      :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 </pre>
+
+???
+* chwilę później wartość jest powyżej 80%, ale to nie powoduje od razu zmiany stanu alarmu na alarm
+* w zależności od konfiguracji stosu oraz tego, jak często Aodh evaluator jest uruchamiany, zmiana stanu następuje po jakimś czasie i/lub ilości pomiarów
 
 ---
 class: center, middle, regular
@@ -955,7 +1085,7 @@ $ gnocchi measures aggregation \
 | 2017-10-31T09:12:30+00:00 |        15.0 |         100.0 |
 | 2017-10-31T09:12:45+00:00 |        15.0 |         100.0 |
 | 2017-10-31T09:13:00+00:00 |        15.0 | 99.8563531989 |
-| 2017-10-31T09:13:15+00:00 |        15.0 |         100.0 |
+| 2017-10-31T09:13:15+00:00 |        15.0 |         <span class="red">100.0</span> |
 +---------------------------+-------------+---------------+
 </pre>
 
@@ -964,10 +1094,14 @@ $ aodh alarm list
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 | alarm_id                             | type                                       | name                                      | state | severity :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
-| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | alarm | low      :
-| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | ok    | low      :
+| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | <span class="red">alarm</span> | low      :
+| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | <span class="green">ok</span>    | low      :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 </pre>
+
+???
+* w naszym przypadku, po 30 sekundach, alarm jest ustawiony
+* w efekcie, wykonywana jest akcja uruchomienia nowej instancji
 
 ---
 class: center, middle, regular
@@ -983,10 +1117,13 @@ $ nova list
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
 | ID                                   | Name                                                  | Status | Task State | Power State | Networks  :
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
-| fe6b5388-27dd-4603-be5e-10b2e3f7bb8a | te-g_stack-asg-oh2uc3a6pztc-47aplmox5upl-bs6dzk6io7px | BUILD  | spawning   | NOSTATE     |           :
-| 3473c195-35c5-4481-b617-69760589cdda | te-g_stack-asg-oh2uc3a6pztc-f6nokdv7p43p-llk5gfli7fqe | ACTIVE | -          | Running     | private=fd:
+| fe6b5388-27dd-4603-be5e-10b2e3f7bb8a | te-g_stack-asg-oh2uc3a6pztc-47aplmox5upl-bs6dzk6io7px | BUILD  | <span class="red">spawning</span>   | NOSTATE     |           :
+| 3473c195-35c5-4481-b617-69760589cdda | te-g_stack-asg-oh2uc3a6pztc-f6nokdv7p43p-llk5gfli7fqe | <span class="green">ACTIVE</span> | -          | Running     | private=fd:
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
 </pre>
+
+???
+* instancja się "spawa"
 
 ---
 class: center, middle, regular
@@ -1002,10 +1139,13 @@ $ nova list
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
 | ID                                   | Name                                                  | Status | Task State | Power State | Networks  :
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
-| fe6b5388-27dd-4603-be5e-10b2e3f7bb8a | te-g_stack-asg-oh2uc3a6pztc-47aplmox5upl-bs6dzk6io7px | ACTIVE | -          | Running     | private=fd:
-| 3473c195-35c5-4481-b617-69760589cdda | te-g_stack-asg-oh2uc3a6pztc-f6nokdv7p43p-llk5gfli7fqe | ACTIVE | -          | Running     | private=fd:
+| fe6b5388-27dd-4603-be5e-10b2e3f7bb8a | te-g_stack-asg-oh2uc3a6pztc-47aplmox5upl-bs6dzk6io7px | <span class="green">ACTIVE</span> | -          | Running     | private=fd:
+| 3473c195-35c5-4481-b617-69760589cdda | te-g_stack-asg-oh2uc3a6pztc-f6nokdv7p43p-llk5gfli7fqe | <span class="green">ACTIVE</span> | -          | Running     | private=fd:
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
 </pre>
+
+???
+* proszę zwrócić uwagę na UUID **fe6b..**
 
 ---
 class: center, middle, regular
@@ -1035,9 +1175,12 @@ $ gnocchi measures aggregation \
 | 2017-10-31T09:14:45+00:00 |        15.0 | 21.8027558178 |
 | 2017-10-31T09:15:00+00:00 |        15.0 |  6.0431264803 |
 | 2017-10-31T09:15:15+00:00 |        15.0 | 1.44324279385 |
-| 2017-10-31T09:15:30+00:00 |        15.0 |  1.9409027766 |
+| 2017-10-31T09:15:30+00:00 |        15.0 |  <span class="red">1.9409027766</span> |
 +---------------------------+-------------+---------------+
 </pre>
+
+???
+* obciążanie pierwszej instacji zostało wyłączone
 
 ---
 class: center, middle, regular
@@ -1053,7 +1196,7 @@ $ nova list
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
 | ID                                   | Name                                                  | Status | Task State | Power State | Networks  :
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
-| fe6b5388-27dd-4603-be5e-10b2e3f7bb8a | te-g_stack-asg-oh2uc3a6pztc-47aplmox5upl-bs6dzk6io7px | ACTIVE | -          | Running     | private=fd:
+| fe6b5388-27dd-4603-be5e-10b2e3f7bb8a | te-g_stack-asg-oh2uc3a6pztc-47aplmox5upl-bs6dzk6io7px | <span class="green">ACTIVE</span> | -          | Running     | private=fd:
 +--------------------------------------+-------------------------------------------------------+--------+------------+-------------+-----------:
 </pre>
 
@@ -1062,10 +1205,17 @@ $ aodh alarm list
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 | alarm_id                             | type                                       | name                                      | state | severity :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
-| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | ok    | low      :
-| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | alarm | low      :
+| f16d3bb5-babe-4b13-898e-1c20a1e91684 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_high-tvou3zg7su5l | <span class="green">ok</span>    | low      :
+| 2b2067bc-786e-4a19-964d-d0a2e918f8a0 | gnocchi_aggregation_by_resources_threshold | testing_stack-cpu_alarm_low-lwv3gpmv44x2  | <span class="red">alarm</span> | low      :
 +--------------------------------------+--------------------------------------------+-------------------------------------------+-------+----------:
 </pre>
+
+???
+* następuje alarm w dolnym zakresie
+* co by zaoszczędzić, niepotrzebna instacja została usunięta
+* proszę zauważyć, że usunięta została starsza instancja
+* nowa zostanie usunięta przy najbliższej, podobnej sytuacji - to jest działanie domyślne
+* przy tego typu automatyzacji zakłada się, że instancja jest bezstanowa (stan jest w bazie), ale może się popsuć - dlatego usuwa się starsze, a zostawia młodsze instancje
 
 ---
 class: center, middle, regular
@@ -1080,15 +1230,24 @@ class: center, middle, regular
 
 <img src="images/grafana-metrics-02.png" style="width: 70%"></img>
 
+???
+* jak to jest (będzie) widoczne przez Grafanę
+
 ---
 class: center, middle, regular
 
 ## Pytania
 
+???
+**JAKIE** mają państwo pytania?
+
 ---
 class: center, middle, regular
 
 ## Dziękujemy
+
+???
+Ukłony, oklaski..
 
     </textarea>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
