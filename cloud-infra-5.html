@@ -287,12 +287,15 @@ class: regular
 
 ???
 PCI w OVH to:
- - API OpenStack - daje to możliwość korzystania z narzędzi i skryptów
- - WAW to wersja Newton - planujemy wkrótce upgrade do Ocata i później następne
- - Dyski instancji na lokalnych dyskach SSD - wydajność
- - Block storage oparty o CEPH
- - instancje PCI zintegrowane z innymi usługami OVH - o czym będziemy mówić dokładniej za chwilę
- - ochrona Anti-DDoS
+ * Infra oparta o OpenStack
+ * API OpenStack - daje to możliwość korzystania z narzędzi i skryptów (ansible, terraform, itd.)
+ * WAW to wersja Newton - planujemy wkrótce upgrade do Ocata i później następne
+ * Dyski instancji na lokalnych dyskach SSD:
+    * <b>plus</b>: wydajność
+    * <b>minus</b>: utrudniona migracja, nie da się szybko przywrócić VMki po padzie hosta
+ * Block storage (volumeny Cinder'a) oparty o CEPH - można szybko przepiąć z jednej VMki do innej
+ * instancje PCI zintegrowane z innymi usługami OVH - o czym będziemy mówić dokładniej za chwilę
+ * ochrona Anti-DDoS - tak jak na dedykach
 
 ---
 class: regular
@@ -316,7 +319,7 @@ class: regular
 +--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
 | ID                                   | Name     | Status | Task State | Power State | Networks                                        |
 +--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
-| 0e75229b-e68f-410a-93cd-65f7879a6955 | WAW-VM-1 | ACTIVE | -          | Running     | Ext-Net=145.239.30.245, 2001:41d0:601:2000::2db |
+| 0e75229b-e68f-410a-93cd-65f7879a6955 | WAW-VM-1 | ACTIVE | -          | Running     | Ext-Net=<span class="green">145.239.30.245</span>, 2001:41d0:601:2000::2db |
 +--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
 </pre>
 
@@ -324,7 +327,7 @@ class: regular
 ubuntu@waw-vm-1:~$ ip a show ens3
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether fa:16:3e:3d:15:76 brd ff:ff:ff:ff:ff:ff
-    inet 145.239.30.245/32 brd 145.239.30.245 scope global ens3
+    inet <span class="green">145.239.30.245/32</span> brd 145.239.30.245 scope global ens3
        valid_lft forever preferred_lft forever
     inet6 fe80::f816:3eff:fe3d:1576/64 scope link
        valid_lft forever preferred_lft forever
@@ -335,13 +338,15 @@ default via 145.239.28.1 dev ens3
 </pre>
 
 ???
-- każda z instancji posiada może adres sieci publicznej dzięki czemu brak jest
+* Sieć to najbardziej _zmieniona_ część naszego OpenStack'a - całe API jest zgodne z OpenStack
+* każda z instancji posiada adres sieci publicznej; brak
   klasycznego, Neutron'owego network node'a
-- adres sieci publicznej ma maskę /32 dzięki czemu brak ruchu
+* adres sieci publicznej ma maskę /32; brak ruchu
   rozgłoszeniowego (L2) na interfejsie instancji
-- ruch między siecią OVH a zewnetrzną jest chroniony przez Anti-DDoS
-- możliwość podpięcia adresów IP Failover z OVH do instancji - np. przeniesienie
+* ruch między siecią OVH a zewnetrzną jest chroniony przez Anti-DDoS
+* możliwość podpięcia adresów IP Failover z OVH do VMek - np. przeniesienie
   adresu IP z serwera dedykowanego
+* pokazana VMka z publicznym IP i config "wewnątrz"
 
 ---
 class: regular
@@ -364,9 +369,9 @@ class: regular
 </div>
 
 ???
-- sieć prywatna (tenant network) oparta o usługę vRack OVH,
-- vrack to technologia OVH pozwalająca na połączenie prywatną siecią L2 swoich usług,
-- pierwotnie tylko dedyki w obrębie jednego DC, teraz już różne usługi w różnych DC
+* sieć prywatna (tenant network) oparta o usługę vRack OVH,
+* vrack to technologia OVH pozwalająca na połączenie prywatną siecią L2 swoich usług,
+* pierwotnie tylko dedyki w obrębie jednego DC i jeden vlan, teraz już różne usługi w różnych DC
 
 ---
 class: regular
@@ -391,7 +396,8 @@ class: regular
 
 ???
 
-- Można wdrożyć aż do 4000 prywatnych sieci VLAN.
+* Można wdrożyć aż do 4000 prywatnych sieci VLAN.
+* tworzenie sieci np. wg ich przeznaczenia: sieć dla połączeń z backupami, sieć dla połączeń z db itd.
 
 
 ---
@@ -415,10 +421,10 @@ class: regular
 </div>
 
 ???
-- Dzięki temu możliwe jest podłączenie VMek z serwerami dedykowanymi tworząc
+* Możliwe jest podłączenie VMek z serwerami dedykowanymi tworząc
   <b>Infrastrukturę hybrydową</b>
-- Do serwerów dedykowanych możliwe jest doprowadzenie łącza trunk, a do
-  instancji Public Cloud - wiele interfejsów różnych sieci prywatnych.
+* Do serwerów dedykowanych łącze trunk, a do
+  instancji Public Cloud - wiele interfejsów różnych sieci prywatnych - nie znają vlan_id
 
 ---
 
@@ -444,8 +450,8 @@ class: regular
 | id                       | d02876b3-0065-4b72-8aba-2cf8360d8a37 |
 | mtu                      | 9000                                 |
 | name                     | Local-Net                            |
-| provider:network_type    | vrack                                |
-| provider:segmentation_id | 1000                                 |
+| <span class="red">provider:network_type</span>    | <span class="red">vrack</span>                                |
+| <span class="red">provider:segmentation_id</span> | <span class="red">1000</span>                                 |
 | status                   | ACTIVE                               |
 | subnets                  | 352d9782-55df-46c0-93fc-ab7cff83951d |
 +--------------------------+--------------------------------------+
@@ -457,7 +463,7 @@ class: regular
 +-------------------+----------------------------------------------------+
 | Field             | Value                                              |
 +-------------------+----------------------------------------------------+
-| allocation_pools  | {"start": "192.168.0.214", "end": "192.168.0.254"} |
+| <span class="red">allocation_pools</span>  | <span class="red">{"start": "192.168.0.214", "end": "192.168.0.254"}</span> |
 | cidr              | 192.168.0.0/24                                     |
 | dns_nameservers   |                                                    |
 | enable_dhcp       | True                                               |
@@ -476,8 +482,8 @@ utworzona w BHS
 * subnet - taki sam utworzony jest w obu regionach, różne są tylko
   <i>allocation pool'e</i> tak aby nie było overlappingu adresów IP
   przydzielanych przez Neutron'a w różnych regionach
-* ważny jest ten sam segmentation_id - można go wybrać z poziomu panelu manager
-  OVH
+* ważny jest ten sam segmentation_id - w sieci "inter region" musi być taki sam w
+  każdym regionie; można to zrobić z poziomu panelu manager OVH
 
 ---
 
@@ -500,7 +506,7 @@ class: regular
 | ID                                   | Name     | Status | Task State | Power State | Networks                                        |
 +--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
 | 0e75229b-e68f-410a-93cd-65f7879a6955 | WAW-VM-1 | ACTIVE | -          | Running     | Ext-Net=145.239.30.245, 2001:41d0:601:2000::2db |
-|                                      |          |        |            |             | Local-Net=192.168.0.222                         |
+|                                      |          |        |            |             | Local-Net=<span class="green">192.168.0.222</span>                         |
 +--------------------------------------+----------+--------+------------+-------------+-------------------------------------------------+
 </pre>
 <pre style="font-size: 0.45em;">
@@ -509,14 +515,17 @@ class: regular
 | ID                                   | Name     | Status | Task State | Power State | Networks                                          |
 +--------------------------------------+----------+--------+------------+-------------+---------------------------------------------------+
 | 8c193736-b98f-4c5d-b9b1-0186b507b293 | BHS-VM-1 | ACTIVE | -          | Running     | Ext-Net=142.44.244.158, 2607:5300:201:2100::3:cc9c|
-|                                      |          |        |            |             | Local-Net=192.168.0.2                             |
+|                                      |          |        |            |             | Local-Net=<span class="green">192.168.0.2</span>                             |
 +--------------------------------------+----------+--------+------------+-------------+---------------------------------------------------+
 
 ???
-Jak to wygląda w praktyce?
-
+W praktyce:
 * do VMki z WAW dodajemy nowy interfejs z siecią lokalną
-* jest też druga, podobna VMka w BHS
+  (to net_id jest to samo co na poprzednich slajdach)
+* jest też druga, podobna VMka w BHS - sieć tam zrobiona
+  ma to samo segmentation_id (1000) jak ta sieć w WAW
+* tak samo mógłby być w tym vracku dodany dedyk i mieć interfejs eth1.1000
+  normalnie by się "widział" z tymi VMkami
 
 ---
 
@@ -533,14 +542,14 @@ class: regular
 -----
 
 <pre style="font-size: 0.5em;">
-ubuntu@waw-vm-1:~$ mtr -r -c 1 192.168.0.2
+ubuntu@waw-vm-1:~$ mtr -r -c 1 <span class="green">192.168.0.2</span>
 Start: Tue Oct 31 14:08:45 2017
 HOST: waw-vm-1                    Loss%   Snt   Last   Avg  Best  Wrst StDev
   1.|-- 192.168.0.2                0.0%     1  109.3 109.3 109.3 109.3   0.0
 </pre>
 
 <pre style="font-size: 0.5em;">
-ubuntu@waw-vm-1:~$ mtr -r -c 1 142.44.244.158
+ubuntu@waw-vm-1:~$ mtr -r -c 1 <span class="red">142.44.244.158</span>
 Start: Tue Oct 31 14:09:28 2017
 HOST: waw-vm-1                    Loss%   Snt   Last   Avg  Best  Wrst StDev
   1.|-- 145.239.28.1               0.0%     1    0.1   0.1   0.1   0.1   0.0
@@ -561,15 +570,12 @@ HOST: waw-vm-1                    Loss%   Snt   Last   Avg  Best  Wrst StDev
 </pre>
 
 ???
-No i teraz komunikacja pomiędzy tymi maszynami jest możliwa :)
+No i teraz komunikacja pomiędzy tymi VMkami jest możliwa :)
 
 Podsumowując:
 * Technologia vRack (wirtualna szafa) pozwala na podłączenie,
-  odizolowanie i rozdzielenie usług OVH w ramach jednej lub kilku prywatnych i zabezpieczonych sieci.
-
-* Dzięki unikalnym technologiom sieciowym możesz zbudować zaawansowane prywatne infrastruktury w strefie wielu centrów danych.
-
-* Dodatkowo Planowane jest uruchomienie vRouter, który pozwoli na zestawienie połączenia między własnymi zasobami a zasobami w OVH.
+  odizolowanie i rozdzielenie usług OVH w ramach jednej lub kilku prywatnych
+  i zabezpieczonych sieci L2!!!
 
 ---
 
@@ -597,9 +603,10 @@ class: regular
 
 ???
 
+* Po pierwsze (najbliżej wdrożenia chyba) LBaaS
 * Loadbalancer to usługa rozdzielająca ruch pomiędzy serwery
-* Trwają prace nad integracją produktu OVH IPLB z OpenStack LBaaS API 2.0 co
-  pozwoli to na zarządzanie load balancerem z poziomu OpenStack API.
+* Trwają prace nad integracją produktu OVH IPLB z OpenStack LBaaS API 2.0;
+  pozwoli na zarządzanie load balancerem z poziomu OpenStack API.
 
 ---
 
@@ -620,7 +627,10 @@ class: regular
 </div>
 
 ???
-Usługa IPLB może będzie mogła być zarządzana zarówno z panelu manager OVH i OVH REST API.
+* Zarządzanie IPLB w panelu OVH
+* Aktualnie już dostępne dla klientów (Beta)
+* Można dodawać również VMki z PCI jako serwery backend
+* Brak wsparcia dla vRack jeszcze
 
 ---
 
@@ -658,10 +668,13 @@ class: regular
 </pre>
 
 ???
-* Zarządzana przez API OpenStack'a
-* Oczywiście wszystkie create/update/delete call'e do LBaaS (listener, pool, member) są możliwe.
+* Tak ma to wyglądać :)
+* Zarządzanie przez API OpenStack'a
+* Oczywiście wszystkie create/update/delete call'e do LBaaS
+  (listener, pool, member) są możliwe.
 * Nie da się zrobić "create loadbalancer" bo to trzeba w panelu OVH zrobić tylko.
-* Wszystkie zmiany zrobione jedną z tych metod są widoczne od razu przez drugi z interfejsów
+* Wszystkie zmiany zrobione jedną z tych metod są widoczne
+  od razu przez drugi z interfejsów
 
 ---
 class: regular
