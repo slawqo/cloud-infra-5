@@ -91,3 +91,10 @@ pre, code, .remark-code {
 .icn.icn-vps {
   background-position: -720px 0;
 }
+
+.red {
+    color: #ff0000;
+}
+.green {
+    color: #00ff00;
+}
